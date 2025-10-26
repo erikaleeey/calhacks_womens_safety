@@ -5,17 +5,6 @@ Super simple working version with just the essentials:
 - Tap map to check risk level at any location
 - Python backend with your ML risk classification logic
 
-## Project Structure
-
-```
-safety-app/
-├── backend/        # Flask API (Python)
-│   ├── app.py      # ← Put your ML logic here
-│   └── requirements.txt
-└── mobile/         # React Native app
-    ├── App.js      # Map interface
-    └── package.json
-```
 
 ## Quick Start
 
@@ -34,7 +23,7 @@ Backend runs on `http://localhost:5001`
 ### 2. Start Mobile App (Terminal 2)
 
 ```bash
-cd mobile
+cd womens-safety-app
 npm install
 npm start
 ```
