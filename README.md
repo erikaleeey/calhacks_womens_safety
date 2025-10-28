@@ -480,38 +480,6 @@ npx expo start
 
 ---
 
-## Technical Highlights for Recruiters
-
-### Machine Learning & Data Science
-- **Supervised learning** with Gradient Boosting (500 estimators, depth 5)
-- **Feature engineering**: Cyclic encoding, spatial binning, log transformation
-- **ETL pipeline**: 50K records from public API → preprocessing → training
-- **Production ML**: In-memory serving, sub-10ms latency
-
-### Voice AI & NLP
-- **Multi-modal pipeline**: STT-LLM-TTS with VAD and turn detection
-- **Context-aware conversations**: Dynamic prompt injection
-- **Low-latency optimization**: Preemptive generation, model prewarming
-- **Audio processing**: Noise cancellation, streaming transcription
-
-### Full-Stack Development
-- **Frontend**: React Native + TypeScript, cross-platform mobile
-- **Backend**: Python Flask REST API with blueprint architecture
-- **Real-time**: WebRTC via LiveKit, SIP integration for 911 calls
-- **External APIs**: Google Maps, SF Open Data, OpenAI, AssemblyAI
-
-### System Design & Architecture
-- **Microservices**: Separate API, ML service, voice agent workers
-- **Scalability**: Stateless API, horizontal scaling, async processing
-- **Security**: JWT tokens, CORS policies, environment config
-- **Error handling**: Try-catch blocks, HTTP status codes, logging
-
-### Software Engineering Best Practices
-- **Type safety**: TypeScript for compile-time error catching
-- **Modular design**: Blueprints, separation of concerns
-- **Resource management**: Cleanup callbacks, memory leak prevention
-- **Code organization**: Clear file structure, single responsibility
-
 ---
 
 ## Impact
