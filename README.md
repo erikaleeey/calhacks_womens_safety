@@ -1,14 +1,16 @@
-# SafeRoute AI - Women's Safety Navigation App
+# SheSteps.AI - Women's Safety Navigation App
+
+**Hi there!** SheSteps.AI is a full-stack AI/ML mobile app we made that empowers women with AI-driven safety intelligence, combining a Gradient Boosting Classifier trained on 50,000 crime incidents with real-time voice AI agents to provide the safest routes in any city. We built this because we noticed a huge issue with current map apps like Google Maps: routes are optimized for efficiency and time, not necessarily women's safety. The fastest route to take at 10pm might lead to sketchy corners that have high crime rates, and we wanted to find a way to quantify that and calculate the safest possible route for a user while using contextually-aware voice agents to assess risk and keep users safe during their trip.
 
 > An intelligent safety navigation platform leveraging machine learning for real-time risk assessment, voice AI assistance, and emergency response dispatch.
 
 ## Overview
 
-SafeRoute AI combines real-time geolocation risk analysis, intelligent route planning, and voice AI assistance to enhance personal safety. The application uses machine learning trained on 50,000 historical crime incidents to predict safety risk levels, helping users make informed decisions about their routes.
+SheSteps.AI combines real-time geolocation risk analysis, intelligent route planning, and voice AI assistance to enhance personal safety. The application uses machine learning trained on 50,000 historical crime incidents to predict safety risk levels, helping users make informed decisions about their routes.
 
 **Key Technical Features:**
 - ML-powered risk prediction using Gradient Boosting Classifier
-- Real-time voice AI agent with STT-LLM-TTS pipeline
+- Real-time voice AI agent with STT-LLM-TTS pipeline using Livekit
 - Multi-route safety analysis with danger zone detection
 - Emergency dispatch system with automated 911 calling
 - Cross-platform mobile app (iOS/Android) with React Native
@@ -81,26 +83,30 @@ SafeRoute AI combines real-time geolocation risk analysis, intelligent route pla
 **Size**: 50,000 historical incident records
 **Key Fields**: `latitude`, `longitude`, `incident_datetime`, `incident_day_of_week`
 
-### Feature Engineering
+### Data Preprocessing & Feature Engineering
 
 **Location**: `safety-app/ml/model_utils.py:50-145`
 
-#### 1. Cyclic Hour Encoding
+#### Feature Engineering
+
+**1. Cyclic Hour Encoding**
 Captures the circular nature of time (23:00 is close to 00:00):
 ```python
 df['hour_sin'] = np.sin(2 * np.pi * df['incident_hour'] / 24)
 df['hour_cos'] = np.cos(2 * np.pi * df['incident_hour'] / 24)
 ```
 
-#### 2. Spatial Binning
+**2. Spatial Binning**
 Bins coordinates at ~111-meter precision for density calculation:
 ```python
 df['lat_bin'] = (df['latitude'] * 100).round(1)
 df['lon_bin'] = (df['longitude'] * 100).round(1)
 ```
 
-#### 3. Risk Label Generation
-Uses incident density-based quantile binning:
+#### Target Variable Creation
+
+**Risk Label Generation via Incident Density**
+Uses quantile binning on log-transformed incident counts:
 ```python
 # Count incidents per location per week
 counts = df.groupby(['incident_year', 'incident_week', 'lat_bin', 'lon_bin']).size()
@@ -480,9 +486,21 @@ npx expo start
 
 ---
 
+## Screenshots
+
+### Map Screen with Risk Assessment +  Route Planning with Safety Scores
+![Map Screen](assets/images/shesteps_map.gif)
+*Real-time location tracking with ML-powered risk circles (green=safe, orange=moderate, red=high)*
+*Multiple route alternatives ranked by safety score with danger zone visualization*
+
+### Voice AI Assistant + Emergency SOS
+![Voice Agent](assets/images/shesteps_voiceagent.gif)
+*Context-aware voice assistant with real-time audio visualization*
+*One-tap emergency dispatch with automated 911 calling*
+
 ---
 
-## Impact
+## Our Goals:
 
 **Addresses Real-World Problem**: Women's safety with data-driven risk assessment
 **ML-Powered**: 50K historical incidents inform predictive model
