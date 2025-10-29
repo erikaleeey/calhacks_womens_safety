@@ -488,13 +488,15 @@ npx expo start
 
 ## Screenshots
 
-### Map Screen with Risk Assessment +  Route Planning with Safety Scores
-![Map Screen](assets/images/shesteps_map.gif)
+### Map Screen with Risk Assessment + Route Planning with Safety Scores
+<img src="assets/images/shesteps_map.gif" alt="Map Screen" width="400"/>
+
 *Real-time location tracking with ML-powered risk circles (green=safe, orange=moderate, red=high)*
 *Multiple route alternatives ranked by safety score with danger zone visualization*
 
 ### Voice AI Assistant + Emergency SOS
-![Voice Agent](assets/images/shesteps_voiceagent.gif)
+<img src="assets/images/shesteps_voiceagent.gif" alt="Voice Agent" width="400"/>
+
 *Context-aware voice assistant with real-time audio visualization*
 *One-tap emergency dispatch with automated 911 calling*
 
